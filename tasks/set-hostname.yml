@@ -4,4 +4,4 @@
   become: yes
   hostname:
     name: "{{ inventory_hostname }}"
-  when: inventory_hostname != 'local'
+  when: hostvars[inventory_hostname].ansible_host != 'localhost'
