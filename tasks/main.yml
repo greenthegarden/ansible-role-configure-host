@@ -1,39 +1,26 @@
 ---
 # tasks file for ansible-role-configure-host
 
-# Upgrading all packages here means the package manager cache is updated
-# so subsequent package installs work.
-- name: "Upgrade system"
-  import_tasks: upgrade-packages.yml
-  when: 0
-  
-# Alternatively just update cache
-- name: Run the equivalent of "apt-get update" as a separate step
-  become: yes
-  apt:
-    update_cache: yes
-  when: ansible_pkg_mgr == 'apt'
-
 - name: Install base dependencies
   import_tasks: install-dependencies.yml
   tags:
     - base
     - dependencies
 
-# - name: Get IP address
-#   import_tasks: get-ip-addresses.yml
-
 - name: Set hostname
   import_tasks: set-hostname.yml
   tags:
     - base
     - hostname
-    
+
 - name: Update hosts file
-  import_tasks: update-hosts.yml
+  import_tasks: update-hosts-file.yml
   tags:
     - base
     - hosts
 
-- name: Install and configure Docker
-  import_tasks: install-configure-docker.yml
+- name: Configure local storage
+  import_tasks: configure-storage.yml
+  tags:
+    - base
+    - storage
