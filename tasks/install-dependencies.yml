@@ -1,0 +1,22 @@
+---
+
+- name: install packages
+  become: yes
+  ignore_errors: yes
+  package:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default(omit) }}"
+  loop: "{{ packages }}"
+  when: packages is defined and ( packages | length > 0 )
+
+#  for compatability with gerrlingguy.pip
+- name: define python modules to install 
+  set_fact:
+    pip_install_packages: "{{ python_modules }}"
+
+- name: install pip
+  become: yes
+  import_role:
+    name: geerlingguy.pip
+  tags:
+    - pip
