@@ -6,7 +6,7 @@
   lineinfile:
     dest: /etc/hosts
     regexp: '^127\.0\.1\.1'
-    line: '127.0.1.1    {{ inventory_hostname }}'
+    line: '127.0.1.1    {{ ansible_hostname }}'
     state: present
 
 # src: https://gist.github.com/rothgar/8793800
@@ -18,5 +18,5 @@
     line: "{{ hostvars[item]['ansible_' + public_iface]['ipv4']['address'] }} {{item}}"
     state: present
     backup: yes
-  when: hostvars[item].ansible_default_ipv4.address is defined
+  when: hostvars[item]['ansible_' + public_iface]['ipv4']['address'] is defined
   loop: "{{ groups['compute_nodes'] | flatten(levels=1) }}"

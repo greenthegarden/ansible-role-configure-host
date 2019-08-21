@@ -19,7 +19,7 @@ packages: []
 
 python_modules: []
 
-storage_base: { path: '/hcnp', owner: '', mnode: '0777' }
+storage_base:
 
 required_service_states: []
 
