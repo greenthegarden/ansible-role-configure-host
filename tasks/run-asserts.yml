@@ -16,7 +16,7 @@
     success_msg: "cluster_iface set to {{ cluster_iface }}"
   when: cluster_iface is defined
 
-- name: Asset required services are installed and running
+- name: Assert required services are installed and running
   block:
 
   - name: Get services running on host

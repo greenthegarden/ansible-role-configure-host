@@ -9,4 +9,4 @@
     success_msg: "Ansible version {{ ansible_version.full }} is installed"
 
 - name: Run host asserts
-  import_tasks: run-assets.yml
+  import_tasks: run-asserts.yml
