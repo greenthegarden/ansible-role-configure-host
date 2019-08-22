@@ -7,4 +7,5 @@
     owner: "{{ ansible_user_id }}"
     state: directory
     mode: 0777
-    
+  when: "{{ storage_base }} is defined and {{ storage_base }} is not None"
+  

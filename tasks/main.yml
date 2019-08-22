@@ -1,6 +1,12 @@
 ---
 # tasks file for ansible-role-configure-host
 
+- name: Run package update
+  import_tasks: run-package-update.yml
+  tags:
+    - base
+    - dependencies
+
 - name: Install base dependencies
   import_tasks: install-dependencies.yml
   tags:
