@@ -3,9 +3,8 @@
 - name: "Create storage area at {{ storage_base }}"
   become: yes
   file:
-    path: "{{ storage_base }}"
-    owner: "{{ ansible_user_id }}"
+    path: "{{ storage_base.name | default(storage_base) }}"
+    owner: "{{ storage_base.owner | default(ansible_user_id) }}"
     state: directory
-    mode: 0777
-  when: "{{ storage_base }} is defined and {{ storage_base }} is not None"
-  
+    mode: "{{ storage_base.mode | default('0777') }}"
+  when: storage_base is defined and storage_base is not none
