@@ -1,5 +1,17 @@
 ---
 
+- name: Debug variable inventory_hostname
+  debug:
+    var: inventory_hostname
+
+- name: Debug variable ansible_hostname
+  debug:
+    var: ansible_hostname
+
+- name: Debug variable hostvars
+  debug:
+    var: hostvars
+    
 - name: Get host IP addresses
   import_tasks: get-ip-addresses.yml
 
