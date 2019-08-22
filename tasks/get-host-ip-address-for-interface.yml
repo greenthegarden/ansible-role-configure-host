@@ -3,7 +3,7 @@
 - name: "Assert interface {{ host_interface }} exists on host"
   assert:
     that:
-      - "{{ host_interface }} in ansible_interfaces"
+      - host_interface in ansible_interfaces
     fail_msg: "Interface {{ host_interface }} not found on host"
     success_msg: "Interface {{ host_interface }} exists on host"
   
