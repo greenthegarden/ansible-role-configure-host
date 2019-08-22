@@ -16,7 +16,7 @@
     success_msg: "cluster_iface set to {{ cluster_iface }}"
   when: cluster_iface is defined
 
-- name: Asset required services are installed and running
+- name: Assert required services are installed and running
   block:
 
   - name: Get services running on host
@@ -25,10 +25,10 @@
   - name: Assert necessary services are installed and running
     assert:
       that:
-        - "item.service in ansible_facts.services"
-        - ansible_facts.services[item.service]['state'] == item.state
-      fail_msg: "Service {{ item.service }} must be installed and running"
-      success_msg: "Service {{ item.service }} is installed and running"
+        - "item.name in ansible_facts.services"
+        - ansible_facts.services[item.name]['state'] == item.state
+      fail_msg: "Service {{ item.name }} must be in state {{ item.state }}"
+      success_msg: "Service {{ item.name }} is in state {{ item.state }}"
     with_items: "{{ required_service_states }}"
 
   when: required_service_states is defined and (required_service_states | length > 0 )
