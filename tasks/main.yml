@@ -15,12 +15,16 @@
 
 - name: Set hostname
   import_tasks: set-hostname.yml
+  when:
+    - set_hostname is defined and set_hostname
   tags:
     - base
     - hostname
 
 - name: Update hosts file
   import_tasks: update-hosts-file.yml
+  when:
+    - update_hosts_file is defined and update_hosts_file
   tags:
     - base
     - hosts

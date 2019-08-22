@@ -15,6 +15,12 @@ git_config: []
 
 update_cache_only: yes
 
+# set to yes to set hostname of node to ansible_host when defined
+set_hostname: no
+
+# set to yes to update /etc/hosts file to include all nodes
+update_hosts_file: no
+
 packages: []
 
 python_modules: []

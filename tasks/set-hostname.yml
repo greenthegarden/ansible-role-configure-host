@@ -1,7 +1,9 @@
 ---
 
-- name: "Set hostname to {{ inventory_hostname }}"
+- name: "Set hostname to {{ hostvars[inventory_hostname].ansible_host }}"
   become: yes
   hostname:
-    name: "{{ inventory_hostname }}"
-  when: hostvars[inventory_hostname].ansible_host != 'localhost'
+    name: "{{ hostvars[inventory_hostname].ansible_host }}"
+  when:
+    - hostvars[inventory_hostname].ansible_host is defined
+    - hostvars[inventory_hostname].ansible_host != 'localhost'
