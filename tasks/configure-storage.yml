@@ -1,9 +1,9 @@
 ---
 
-- name: "Create storage area at {{ storage_base }}"
+- name: "Create host storage area at {{ storage_base }}"
   become: yes
   file:
-    path: "{{ storage_base.name | default(storage_base) }}"
+    path: "{{ storage_base.path | default(storage_base) }}"
     owner: "{{ storage_base.owner | default(ansible_user_id) }}"
     state: directory
     mode: "{{ storage_base.mode | default('0777') }}"
