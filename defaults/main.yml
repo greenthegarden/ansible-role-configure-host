@@ -29,8 +29,4 @@ storage_base:
 
 required_service_states: []
 
-resolv_nameservers: []
-resolv_domain: ""
-resolv_search: []
-resolv_sortlist: []
-resolv_options: []
+manage_firewall: no
