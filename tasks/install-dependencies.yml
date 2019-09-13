@@ -12,13 +12,13 @@
       - ( ansible_os_family | lower ) == "redhat"
 
   - name: install packages
-    become: yes
+    become: ( ansible_os_family | lower ) != "darwin"
     ignore_errors: yes
     package:
       name: "{{ item.name | default(item) }}"
       state: "{{ item.state | default(omit) }}"
     loop: "{{ packages }}"
-  
+
   when: packages is defined and ( packages | length > 0 )
 
 - name: Install Python module dependencies
@@ -30,7 +30,7 @@
       pip_install_packages: "{{ python_modules }}"
 
   - name: install pip
-    become: yes
+    become: ( ansible_os_family | lower ) != "darwin"
     import_role:
       name: geerlingguy.pip
     tags:
