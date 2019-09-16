@@ -1,0 +1,22 @@
+---
+
+- name: Install package dependencies
+  block:
+
+  - name: Add Extra Packages for Enterprise Linux (EPEL) when on CentOS/Fedora/Redhat
+    become: yes
+    yum:
+      name: epel-release
+      state: present
+    when:
+      - ( ansible_os_family | lower ) == "redhat"
+
+  - name: install packages
+    become: yes
+    ignore_errors: yes
+    package:
+      name: "{{ item.name | default(item) }}"
+      state: "{{ item.state | default(omit) }}"
+    loop: "{{ packages }}"
+  
+  when: packages is defined and ( packages | length > 0 )

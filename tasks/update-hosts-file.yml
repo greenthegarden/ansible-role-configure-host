@@ -15,9 +15,9 @@
   lineinfile:
     path: /etc/hosts
     regexp: '.*{{ item }}$'
-    line: "{{ hostvars[item]['ansible_' + cluster_iface]['ipv4']['address'] }} {{item}}"
+    line: "{{ hostvars[item]['ansible_' + specified_iface]['ipv4']['address'] }} {{item}}"
     state: present
     backup: yes
   when:
-    - hostvars[item]['ansible_' + cluster_iface]['ipv4']['address'] is defined
+    - hostvars[item]['ansible_' + specified_iface]['ipv4']['address'] is defined
   loop: "{{ groups['all'] | flatten(levels=1) }}"

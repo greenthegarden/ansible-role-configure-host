@@ -30,3 +30,5 @@ storage_base:
 required_service_states: []
 
 manage_firewall: no
+
+specified_iface: eth0

@@ -1,39 +1,9 @@
 ---
 
-- name: Install package dependencies
-  block:
-
-  - name: Add Extra Packages for Enterprise Linux (EPEL) when on CentOS/Fedora/Redhat
-    become: yes
-    yum:
-      name: epel-release
-      state: present
-    when:
-      - ( ansible_os_family | lower ) == "redhat"
-
-  - name: install packages
-    become: yes
-    ignore_errors: yes
-    package:
-      name: "{{ item.name | default(item) }}"
-      state: "{{ item.state | default(omit) }}"
-    loop: "{{ packages }}"
-  
+- name: Install dependent packages
+  import_tasks: install-packages.yml
   when: packages is defined and ( packages | length > 0 )
 
-- name: Install Python module dependencies
-  block:
-
-  #  for compatability with gerrlingguy.pip
-  - name: define python modules to install 
-    set_fact:
-      pip_install_packages: "{{ python_modules }}"
-
-  - name: install pip
-    become: yes
-    import_role:
-      name: geerlingguy.pip
-    tags:
-      - pip
-
+- name: Install dependent Python modules
+  import_tasks: install-python-modules.yml
   when: python_modules is defined and ( python_modules | length > 0 )

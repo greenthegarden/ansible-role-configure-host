@@ -1,0 +1,18 @@
+---
+
+- name: Install Python modules
+  block:
+
+  #  for compatability with gerrlingguy.pip
+  - name: define python modules to install 
+    set_fact:
+      pip_install_packages: "{{ python_modules }}"
+
+  - name: install pip
+    become: yes
+    import_role:
+      name: geerlingguy.pip
+    tags:
+      - pip
+
+  when: python_modules is defined and ( python_modules | length > 0 )
