@@ -11,9 +11,6 @@
     when:
       - ( ansible_os_family | lower ) == "redhat"
 
-#TODO fix darwin issue
-# become: ( ansible_os_family | lower ) != "darwin"
-# did not work on Centos
   - name: install packages
     become: "{{ ( ansible_os_family | lower ) != 'darwin' }}"
     ignore_errors: yes
