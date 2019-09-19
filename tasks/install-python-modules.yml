@@ -9,7 +9,7 @@
       pip_install_packages: "{{ python_modules }}"
 
   - name: install pip
-    become: yes
+    become: "{{ ( ansible_os_family | lower ) != 'darwin' }}"
     import_role:
       name: geerlingguy.pip
     tags:
