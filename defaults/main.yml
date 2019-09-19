@@ -21,8 +21,20 @@ set_hostname: no
 # set to yes to update /etc/hosts file to include all nodes
 update_hosts_file: no
 
+# define packages to be installed by install-packages.yml as a list
+# name
+# state: one of present, latest, absent; if not specified will be omitted
+# packages: [
+#   { name: '', state: ''}
+# ]
 packages: []
 
+# define python_modules to be installed by install-python_modules.yml as a list
+# name
+# state: one of present, latest, absent; if not specified will be omitted
+# python_modules: [
+#   { name: '', state: ''}
+# ]
 python_modules: []
 
 storage_base:
