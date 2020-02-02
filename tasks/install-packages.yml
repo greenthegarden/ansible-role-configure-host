@@ -1,5 +1,8 @@
 ---
 
+- name: Run package update
+  import_tasks: run-package-update.yml
+
 - name: Install package dependencies
   block:
 
