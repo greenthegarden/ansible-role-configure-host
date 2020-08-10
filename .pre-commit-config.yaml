@@ -1,16 +1,13 @@
 ---
 
-default_stages: [push]
+# default_stages: [push]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
-      - id: check-yaml
       - id: trailing-whitespace
       - id: end-of-file-fixer
-      # - id: fix-encoding-pragma
-      #     args: [--remove]
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.24.2
     hooks:
@@ -20,3 +17,10 @@ repos:
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
+  # - repo: local
+  #   hooks:
+  #   - id: yamllint
+  #     name: yamllint
+  #     entry: yamllint -c .yamllint .
+  #     language: python
+  #     types: [file, yaml]

@@ -12,8 +12,8 @@
   debug:
     var: hostvars
 
-- name: Get host IP addresses
-  import_tasks: get-ip-addresses.yml
+- name: Get host Default IP addresses
+  import_tasks: get-host-default-ip-addresses.yml
 
 - name: Get services running on host
   import_tasks: get-host-services.yml

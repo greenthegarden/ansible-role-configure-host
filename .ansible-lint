@@ -2,5 +2,7 @@ exclude_paths:
   - ./vscode/
 parseable: true
 quiet: true
+skip_list:
+  - '403'
 use_default_rules: true
 verbosity: 1

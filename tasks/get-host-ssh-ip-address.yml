@@ -1,0 +1,7 @@
+---
+
+# source: https://www.middlewareinventory.com/blog/ansible-get-ip-address/
+
+- name: Get SSH IP Address
+  set_fact:
+    ssh_ip_address: hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]

@@ -1,0 +1,11 @@
+---
+
+# source: https://www.middlewareinventory.com/blog/ansible-get-ip-address/
+
+- name: Get Default IPv4 IP Address
+  set_fact:
+    default_ipv4: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+
+- name: Get Default IPv6 IP Address
+  set_fact:
+    default_ipv6: hostvars[inventory_hostname]['ansible_default_ipv6']['address']
