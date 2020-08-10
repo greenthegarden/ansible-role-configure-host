@@ -4,11 +4,11 @@
   block:
 
   #  for compatability with gerrlingguy.pip
-  - name: define python modules to install 
+  - name: Define python modules to install
     set_fact:
       pip_install_packages: "{{ python_modules }}"
 
-  - name: install pip
+  - name: Install pip
     become: "{{ ( ansible_os_family | lower ) != 'darwin' }}"
     import_role:
       name: geerlingguy.pip

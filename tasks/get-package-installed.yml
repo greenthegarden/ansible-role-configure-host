@@ -1,8 +1,9 @@
 ---
 
-- package_facts: {}
+- name: Get package facts
+  package_facts: {}
 
-- when: ansible_facts.packages | length < 1
+- name: Check packages installed
   block:
 
   - name: "check if {{ package }} is installed"
@@ -17,9 +18,11 @@
     register: is_installed
     when: ansible_pkg_mgr == 'apt'
 
+  when: ansible_facts.packages | length < 1
+
 # pkg.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 # - package_facts: {}
 # - when: ansible_facts.packages["mysql57-community-release"] is undefined
 #   block:
-#   - yum:  
+#   - yum:

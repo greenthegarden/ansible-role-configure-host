@@ -1,6 +1,7 @@
 ---
 
 # Check Ansible version before proceeding
+
 - name: Assert Ansible version meets minimum requirements
   assert:
     that:

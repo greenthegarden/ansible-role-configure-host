@@ -1,1 +1,5 @@
+# manage IDE settings
 .idea/**
+.vscode/**
+!.vscode/settings.json
+!.vscode/extensions.json

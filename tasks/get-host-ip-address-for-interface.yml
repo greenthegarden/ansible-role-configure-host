@@ -6,7 +6,7 @@
       - host_interface in ansible_interfaces
     fail_msg: "Interface {{ host_interface }} not found on host"
     success_msg: "Interface {{ host_interface }} exists on host"
-  
+
 - name: Get IP address for interface
   set_fact:
     interface_ip_address: ansible_host['ansible_' + {{ host_interface }}]['ipv4']['address']

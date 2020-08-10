@@ -11,7 +11,7 @@
 - name: Debug variable hostvars
   debug:
     var: hostvars
-    
+
 - name: Get host IP addresses
   import_tasks: get-ip-addresses.yml
 

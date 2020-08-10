@@ -21,7 +21,7 @@
 #       - external_ip_addr is defined
 #     fail_msg: "'external_ip_addr' not found for specified IP range"
 #     success_msg: "'external_ip_addr' found and set to {{ external_ip_addr }}"
-  
+
 # - name: Get public IP address
 #   set_fact:
 #     public_ip_addr: "{{ item }}"
@@ -47,4 +47,3 @@
       - cluster_ip_addr is defined
     fail_msg: "'cluster_ip_addr' not found for specified IP range"
     success_msg: "'cluster_ip_addr' found and set to {{ cluster_ip_addr }}"
-  

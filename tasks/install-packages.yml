@@ -21,5 +21,5 @@
       name: "{{ item.name | default(item) }}"
       state: "{{ item.state | default(omit) }}"
     loop: "{{ packages }}"
-  
+
   when: packages is defined and ( packages | length > 0 )

@@ -15,7 +15,7 @@
   lineinfile:
     path: /etc/hosts
     regexp: '.*{{ item }}$'
-    line: "{{ hostvars[item]['ansible_' + specified_iface]['ipv4']['address'] }} {{item}}"
+    line: "{{ hostvars[item]['ansible_' + specified_iface]['ipv4']['address'] }} {{ item }}"
     state: present
     backup: yes
   when:

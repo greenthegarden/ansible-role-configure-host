@@ -1,10 +1,10 @@
 ---
 
-- name: "Assert interface {{ public_iface}} defined as public_iface exists on host"
+- name: "Assert interface {{ public_iface }} defined as public_iface exists on host"
   assert:
     that:
       - public_iface in ansible_interfaces
-    fail_msg: "{{ public_iface}} is not detected on {{ ansible_host }}. Ensure interface is correctly defined for host"
+    fail_msg: "{{ public_iface }} is not detected on {{ ansible_host }}. Ensure interface is correctly defined for host"
     success_msg: "public_iface set to {{ public_iface }}"
   when: public_iface is defined
 
@@ -12,7 +12,7 @@
   assert:
     that:
       - cluster_iface in ansible_interfaces
-    fail_msg: "{{ cluster_iface}} is not detected on {{ ansible_host }}. Ensure interface is correctly defined for host"
+    fail_msg: "{{ cluster_iface }} is not detected on {{ ansible_host }}. Ensure interface is correctly defined for host"
     success_msg: "cluster_iface set to {{ cluster_iface }}"
   when: cluster_iface is defined
 
