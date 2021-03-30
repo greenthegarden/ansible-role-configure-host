@@ -53,7 +53,7 @@ rules:
   key-duplicates: enable
 
   line-length:
-    max: 80
+    max: 160
     level: warning
     allow-non-breakable-inline-mappings: true
 

@@ -1,6 +1,7 @@
 *.retry
 */__pycache__
 *.pyc
+.cache/
 
 # manage IDE settings
 .idea/**
