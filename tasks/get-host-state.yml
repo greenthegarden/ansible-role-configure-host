@@ -1,22 +1,21 @@
 ---
-
 - name: Debug variable inventory_hostname
-  debug:
+  ansible.builtin.debug:
     var: inventory_hostname
 
 - name: Debug variable ansible_hostname
-  debug:
+  ansible.builtin.debug:
     var: ansible_hostname
 
 - name: Debug variable hostvars
-  debug:
+  ansible.builtin.debug:
     var: hostvars
 
 - name: Get host Default IP addresses
-  import_tasks: get-host-default-ip-addresses.yml
+  ansible.builtin.import_tasks: get-host-default-ip-addresses.yml
 
 - name: Get services running on host
-  import_tasks: get-host-services.yml
+  ansible.builtin.import_tasks: get-host-services.yml
 
 - name: Check whether firewalld is running
-  import_tasks: get-firewall-state.yml
+  ansible.builtin.import_tasks: get-firewall-state.yml

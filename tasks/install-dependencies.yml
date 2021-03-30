@@ -1,9 +1,8 @@
 ---
-
 - name: Install dependent packages
-  import_tasks: install-packages.yml
+  ansible.builtin.import_tasks: install-packages.yml
   when: packages is defined and ( packages | length > 0 )
 
 - name: Install dependent Python modules
-  import_tasks: install-python-modules.yml
+  ansible.builtin.import_tasks: install-python-modules.yml
   when: python_modules is defined and ( python_modules | length > 0 )

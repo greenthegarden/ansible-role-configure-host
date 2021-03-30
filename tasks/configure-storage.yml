@@ -1,8 +1,7 @@
 ---
-
 - name: "Create host storage area at {{ storage_base }}"
   become: yes
-  file:
+  ansible.builtin.file:
     path: "{{ storage_base.path | default(storage_base) }}"
     owner: "{{ storage_base.owner | default(ansible_user_id) }}"
     state: directory

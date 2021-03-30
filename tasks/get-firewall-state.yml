@@ -1,11 +1,10 @@
 ---
-
 - name: Get running services
-  service_facts:
+  ansible.builtin.service_facts:
   when: (service_facts_run is not defined) or (not service_facts_run)
 
 - name: Check whether firewalld is running
-  set_fact:
+  ansible.builtin.set_fact:
     manage_firewall: yes
   ignore_errors: yes
   when: ('firewalld.service' in ansible_facts.services) and (ansible_facts.services['firewalld.service']['state'] == 'running')

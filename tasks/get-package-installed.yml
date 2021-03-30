@@ -1,25 +1,20 @@
 ---
-
 - name: Get package facts
-  package_facts: {}
+  ansible.builtin.package_facts: {}
 
 - name: Check packages installed
   block:
+    - name: "check if {{ package }} is installed"
+      ansible.builtin.yum: list="{{ package }}"
+      register: is_installed
+      when: ansible_pkg_mgr == 'yum'
 
-  - name: "check if {{ package }} is installed"
-    yum:
-      list="{{ package }}"
-    register: is_installed
-    when: ansible_pkg_mgr == 'yum'
-
-  - name: "check if {{ package }} is installed"
-    apt:
-      list="{{ package }}"
-    register: is_installed
-    when: ansible_pkg_mgr == 'apt'
+    - name: "check if {{ package }} is installed"
+      ansible.builtin.apt: list="{{ package }}"
+      register: is_installed
+      when: ansible_pkg_mgr == 'apt'
 
   when: ansible_facts.packages | length < 1
-
 # pkg.results|selectattr("yumstate", "match", "installed")|list|length != 0
 
 # - package_facts: {}

@@ -1,13 +1,12 @@
 ---
-
 # Check Ansible version before proceeding
 
 - name: Assert Ansible version meets minimum requirements
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_version.full is version_compare({{ ansible_minimum_version }}, '>=')
     fail_msg: "Ansible must be version {{ ansible_minimum_version }} or greater to run this play. Install Ansible using pip to ensure the latest version."
     success_msg: "Ansible version {{ ansible_version.full }} is installed"
 
 - name: Run host asserts
-  import_tasks: run-asserts.yml
+  ansible.builtin.import_tasks: run-asserts.yml

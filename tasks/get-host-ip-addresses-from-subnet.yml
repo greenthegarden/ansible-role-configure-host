@@ -1,5 +1,4 @@
 ---
-
 # this code may be useful in future
 # - name: debug print all interface ipv4 data
 #   when: "{{ hostvars[ansible_fqdn]['ansible_'~item]['ipv4'] is defined }}"
@@ -36,13 +35,13 @@
 #     success_msg: "'public_ip_addr' found and set to {{ public_ip_addr }}"
 
 - name: Get cluster IP address
-  set_fact:
+  ansible.builtin.set_fact:
     cluster_ip_addr: "{{ item }}"
   when: "item | ipaddr('10.0.0.0/16')"
   with_items: "{{ ansible_all_ipv4_addresses }}"
 
 - name: Assert cluster IP address found
-  assert:
+  ansible.builtin.assert:
     that:
       - cluster_ip_addr is defined
     fail_msg: "'cluster_ip_addr' not found for specified IP range"

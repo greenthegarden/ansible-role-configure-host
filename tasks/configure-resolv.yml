@@ -1,14 +1,13 @@
 ---
-
 - name: Update DNS settings
-  template:
+  ansible.builtin.template:
     src: "resolv.conf.j2"
     dest: "/tmp/resolv.conf"
     mode: "0644"
 
 - name: Insert into resolv.conf
   become: yes
-  blockinfile:
+  ansible.builtin.blockinfile:
     block: "{{ lookup('file', '/tmp/resolv.conf') }}"
     dest: "/etc/resolv.conf"
     backup: yes

@@ -1,18 +1,16 @@
 ---
-
 - name: Install Python modules
   block:
+    #  for compatability with gerrlingguy.pip
+    - name: Define python modules to install
+      ansible.builtin.set_fact:
+        pip_install_packages: "{{ python_modules }}"
 
-  #  for compatability with gerrlingguy.pip
-  - name: Define python modules to install
-    set_fact:
-      pip_install_packages: "{{ python_modules }}"
-
-  - name: Install pip
-    become: "{{ ( ansible_os_family | lower ) != 'darwin' }}"
-    import_role:
-      name: geerlingguy.pip
-    tags:
-      - pip
+    - name: Install pip
+      become: "{{ ( ansible_os_family | lower ) != 'darwin' }}"
+      ansible.builtin.import_role:
+        name: geerlingguy.pip
+      tags:
+        - pip
 
   when: python_modules is defined and ( python_modules | length > 0 )

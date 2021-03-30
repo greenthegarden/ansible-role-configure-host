@@ -2,19 +2,19 @@
 # tasks file for ansible-role-configure-host
 
 - name: Run package update
-  import_tasks: run-package-update.yml
+  ansible.builtin.import_tasks: run-package-update.yml
   tags:
     - base
     - dependencies
 
 - name: Install base dependencies
-  import_tasks: install-dependencies.yml
+  ansible.builtin.import_tasks: install-dependencies.yml
   tags:
     - base
     - dependencies
 
 - name: Configure local storage
-  import_tasks: configure-storage.yml
+  ansible.builtin.import_tasks: configure-storage.yml
   tags:
     - base
     - storage

@@ -1,8 +1,7 @@
 ---
-
 - name: "Set hostname to {{ hostvars[inventory_hostname].ansible_host }}"
   become: yes
-  hostname:
+  ansible.builtin.hostname:
     name: "{{ hostvars[inventory_hostname].ansible_host }}"
   when:
     - hostvars[inventory_hostname].ansible_host is defined
